@@ -77,20 +77,28 @@ public class MainDrive {
 		try {
 //			한글자씩 직접 파일을 읽는 fr
 			FileReader fr = new FileReader(phoneBookFile);
+			
+//			fr만 쓰면 불편하니 여러글자를 뭉쳐서  String으로 리턴하도록 보조		
 			BufferedReader br = new BufferedReader(fr);
 			
-//			fr만 쓰면 불편하니 여러글자를 뭉쳐서  String으로 리턴하도록 보조
+//			파일을 끝까지 읽으면 몇줄이 될지 알수 없음
+//			반복의 횟수가 불명확 => 무한반복 + 상황봐서 탈출
 			while(true) {
 				
+//				br을 이용해 한줄을 한꺼번에 불러오는 메소드 실행
 				String line = br.readLine();
 				
+//				한줄을 불렀는데 읽어올내용이 없다면?
 				if(line==null) {
+//					전부다 읽은걸로 간주하고 빠져나가자
 					System.out.println("모두 읽었습니다");
+//					연락처 갯수로 활용
 					System.out.println(String.format("연락처에 총 %d명이 저장되어있습니다.", myFriends.size()));
 					break;
 				}
 				
 //				유저정보 "," 기준으로 나누기
+//				line에 내용이 있어서 break를 안만나고 내려와야 실행되는 부분				
 				String[] userInfos = line.split(",");
 				String userName = userInfos[0];
 				String userPhone = userInfos[1];
@@ -98,12 +106,13 @@ public class MainDrive {
 				
 //				System.out.println(String.format("%s(%d세) : %s", userName,userYear,userPhone)); //순서를 잘맞춰야됌
 			
-				
+//				하나하나 얻어낸 정보들을  User클래스 객체에 담아주자
 				User user = new User(userName,userYear,userPhone);
 				
-//				유저 몆명인지 추가하면서 파악
+//				만들어낸 객체를 목록에 등록 (size에 반영되도록)
 				myFriends.add(user);
 				
+//				User클래스의 toString을 오버라이딩 해서 출력
 				System.out.println(user);
 				
 			}

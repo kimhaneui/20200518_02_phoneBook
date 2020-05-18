@@ -67,17 +67,19 @@ public class MainDrive {
 	
 	static void printUsers() {
 		
-//		저장된 파일위치 불러오기
+//		전화번호 추가와 같은 파일을 사용한다고 명시
+//		파일이름이 다르지않게 확인잘하기
 		File phoneBookFile = new File("phoneBook.csv");
 		
-//		배열만들어서 유저갯수 파악하기
+//		배열에 저장된 연락처를 목록에 담아서 유저갯수 파악에 사용
 		List<User> myFriends = new ArrayList<User>();
 		
 		try {
-			
+//			한글자씩 직접 파일을 읽는 fr
 			FileReader fr = new FileReader(phoneBookFile);
 			BufferedReader br = new BufferedReader(fr);
 			
+//			fr만 쓰면 불편하니 여러글자를 뭉쳐서  String으로 리턴하도록 보조
 			while(true) {
 				
 				String line = br.readLine();

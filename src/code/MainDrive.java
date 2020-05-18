@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import code.datas.User;
+
 public class MainDrive {
 	
 	public static void main(String[] args) {
@@ -74,8 +76,12 @@ public class MainDrive {
 				String userPhone = userInfos[1];
 				int userYear = Integer.parseInt(userInfos[2]);
 				
-				System.out.println(String.format("%s(%d세)-%s", userName,userYear,userPhone)); //순서를 잘맞춰야됌
+//				System.out.println(String.format("%s(%d세) : %s", userName,userYear,userPhone)); //순서를 잘맞춰야됌
 			
+				User user = new User(userName,userYear,userPhone);
+				
+				System.out.println(user);
+				
 			}
 			
 			br.close();

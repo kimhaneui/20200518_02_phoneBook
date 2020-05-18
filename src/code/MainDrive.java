@@ -69,8 +69,13 @@ public class MainDrive {
 					System.out.println("모두 읽었습니다");
 					break;
 				}
-				System.out.println(line);
-	
+				String[] userInfos = line.split(",");
+				String userName = userInfos[0];
+				String userPhone = userInfos[1];
+				int userYear = Integer.parseInt(userInfos[2]);
+				
+				System.out.println(String.format("%s(%d세)-%s", userName,userYear,userPhone)); //순서를 잘맞춰야됌
+			
 			}
 			
 			br.close();

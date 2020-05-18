@@ -33,7 +33,7 @@ public class MainDrive {
 			}
 			else if(menuInput == 1) {
 //				전화번호 추가하는 기능
-				
+				writeUserInfoToFile();
 				
 			}
 			else if(menuInput == 2) {
@@ -60,7 +60,7 @@ public class MainDrive {
 		String phone = scan.nextLine();
 		
 		System.out.println("생년 입력 : ");
-		String year = scan.nextLine();
+		int year = scan.nextInt();
 		
 //		File 자동완성 시켜야됌 (ios)
 		File phoneBookFile = new File("phoneBook.csv");
@@ -69,6 +69,15 @@ public class MainDrive {
 			FileWriter fw = new FileWriter(phoneBookFile, true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			
+			String inputContent = String.format("%s,%s,%d", name,phone,year);
+			
+			bw.append(inputContent);
+			bw.newLine(); //줄바꿔라
+			
+			bw.close();
+			fw.close();
+			
+			System.out.println("연락처 저장이 완료되었습니다.");
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

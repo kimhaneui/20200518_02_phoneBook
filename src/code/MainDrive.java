@@ -1,7 +1,10 @@
 package code;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -38,7 +41,7 @@ public class MainDrive {
 			}
 			else if(menuInput == 2) {
 //				목록 조회하는 기능
-				
+				printUsers();
 			}
 			else {
 //				해당사항이 없는 번호를 누르면 이렇게된다
@@ -47,6 +50,41 @@ public class MainDrive {
 			}
 		}
 		
+	}
+	
+	
+	static void printUsers() {
+		
+		File phoneBookFile = new File("phoneBook.csv");
+		try {
+			
+			FileReader fr = new FileReader(phoneBookFile);
+			BufferedReader br = new BufferedReader(fr);
+			
+			while(true) {
+				
+				String line = br.readLine();
+				
+				if(line==null) {
+					System.out.println("모두 읽었습니다");
+					break;
+				}
+				System.out.println(line);
+	
+			}
+			
+			br.close();
+			fr.close();
+			
+		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+			
+			System.out.println("아직 저장한 사람이 없습니다.");
+		} catch (IOException e) {
+//			e.printStackTrace();
+			
+			System.out.println("파일을 읽는중에 문제가 생겼습니다.");
+		}
 	}
 	
 	static void writeUserInfoToFile() {
